@@ -24,6 +24,9 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'cancancan'
+gem 'omniauth'
+gem 'omniauth-github', :github => 'intridea/omniauth-github'
+gem 'omniauth-openid', :github => 'intridea/omniauth-openid'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
