@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20160609035115) do
     t.datetime "updated_at", null: false
     t.text     "language"
     t.integer  "user_id"
+    t.text     "name"
   end
 
   create_table "users", force: :cascade do |t|
@@ -42,6 +43,8 @@ ActiveRecord::Schema.define(version: 20160609035115) do
     t.datetime "updated_at",                          null: false
     t.string   "provider"
     t.string   "uid"
+    t.text     "bio"
+    t.string   "status"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

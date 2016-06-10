@@ -1,0 +1,11 @@
+<% form_for @skills do |f| %>
+
+<%= f.label :'Add a Skill:'  %>
+<%= f.text_field :name %>
+
+<%= f.label :'Add a Language:'%>
+<%= f.text_field :language%>
+
+<%= f.submit %>
+
+<% end %>

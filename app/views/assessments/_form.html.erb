@@ -1,0 +1,14 @@
+<% form_for @assessments do |f| %>
+
+<%= f.label :name  %>
+<%= f.text_field :name %>
+
+<%= f.label :"Add It's Language" %>
+<%= f.text_field :skills[][:language]%>
+
+<%= f.label :"Add It's Skills" %>
+<%= f.text_field :skills[][:name]%>
+
+<%= f.submit %>
+
+<% end %>
