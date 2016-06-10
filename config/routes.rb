@@ -1,9 +1,18 @@
 Rails.application.routes.draw do
   devise_for :users
+
   resources :assessments
   resources :skills
 
-  get 'auth/github/callback' => 'session#create'
+#  match 'auth/github' => 'sessions#create', :via =>[:get, :post]
+  get '/auth/github' => 'sessions#create'
+#  get 'auth/github' => 'sessions#create'
+#  get 'auth/' => 'sessions#create'
+#  get 'login/oauth/authorize'
+#  post 'login/oauth/access_token' => 'sessions#create', :via =>[:get, :post]
+
+  root 'assessments#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

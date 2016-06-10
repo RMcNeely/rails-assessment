@@ -1,2 +1,0 @@
-class SesssionController < ApplicationController
-end
