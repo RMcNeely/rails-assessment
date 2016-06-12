@@ -1,4 +1,3 @@
 class Assessment < ActiveRecord::Base
-
-  belongs_to :skills
+  has_many :assessments_skills
 end

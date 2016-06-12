@@ -5,12 +5,12 @@ Rails.application.routes.draw do
   resources :skills
 
 #  match 'auth/github' => 'sessions#create', :via =>[:get, :post]
-  get 'auth/github/callback' => 'sessions#create'
+  get 'auth' => 'sessions#create'
 #  get 'auth/github' => 'sessions#create'
 #  get 'auth/' => 'sessions#create'
 #  get 'login/oauth/authorize'
 #  post 'login/oauth/access_token' => 'sessions#create', :via =>[:get, :post]
-
+  get 'users/sign_out' => 'sessions#destroy'
   root 'assessments#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
