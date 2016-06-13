@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
-
+    resources :users, :as => "students"
+  
   resources :assessments
   resources :skills
 
@@ -11,7 +12,7 @@ Rails.application.routes.draw do
 #  get 'login/oauth/authorize'
 #  post 'login/oauth/access_token' => 'sessions#create', :via =>[:get, :post]
   get 'users/sign_out' => 'sessions#destroy'
-  root 'assessments#index'
+  root 'application#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

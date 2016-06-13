@@ -3,10 +3,50 @@
 <head>
   <title>Learn Student Directory</title>
   <%= stylesheet_link_tag    'foundation', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'main.css.scss', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'app', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag "vendor/modernizr" %>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <!-- Small Navigation
+<div class="title-bar" data-responsive-toggle="nav-menu" data-hide-for="medium">
+  <a class="logo-small show-for-small-only" href="#"><img src="http://placehold.it/50x50?text=LOGO" /></a>
+  <button class="menu-icon" type="button" data-toggle></button>
+  <div class="title-bar-title">Menu</div>
+</div>
+
+-->
+
+<!-- Medium-Up Navigation -->
+<nav class="top-bar" id="nav-menu">
+  <div class="logo-wrapper hide-for-small-only">
+    <div class="logo">
+      <a href="/">
+        <img src="learn-symbol.jpeg">
+      </a>
+    </div>
+  </div>
+
+<!-- Left Nav Section -->
+<div class="top-bar-left">
+  <ul class="vertical medium-horizontal menu">
+    <li><a href="/students">Students</a></li>
+    <li><a href="/assessments">Assessments</a></li>
+  </ul>
+</div>
+
+<% session[:user_id] ? in_or_out = "Sign Out" : in_or_out = "Sign In"%>
+  <!-- Right Nav Section -->
+    <div class="top-bar-right">
+      <ul class="vertical medium-horizontal menu">
+        <li><a href="#"><input type="search" name="Find" value="Search"></a></li>
+        <li><a href="#"><%= "#{in_or_out}" %></a></li>
+      </ul>
+    </div>
+</nav>
+
 
 <%= yield %>
 
