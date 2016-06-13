@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20160611203122) do
     t.string   "uid"
     t.text     "bio"
     t.string   "status"
+    t.string   "name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

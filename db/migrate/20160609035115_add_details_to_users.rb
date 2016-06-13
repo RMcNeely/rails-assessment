@@ -4,5 +4,6 @@ class AddDetailsToUsers < ActiveRecord::Migration
     add_column :users, :uid, :string
     add_column :users, :bio, :text
     add_column :users, :status, :string
+    add_column :users, :name, :string 
   end
 end

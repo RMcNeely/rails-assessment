@@ -29,6 +29,7 @@ gem 'omniauth-github', :github => 'intridea/omniauth-github'
 gem 'omniauth-openid', :github => 'intridea/omniauth-openid'
 gem 'dotenv-rails'
 gem 'pry'
+gem 'faker'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
