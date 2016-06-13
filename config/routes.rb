@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
     resources :users, :as => "students"
-  
+
   resources :assessments
+    get 'assessment/:slug' => 'assessments#show'
+    get 'assessment/:slug/edit' => 'assessments#edit'
+
   resources :skills
+    get 'skill/:slug' => 'skills#show'
+    get 'skill/:slug/edit' => 'skills#edit'
 
 #  match 'auth/github' => 'sessions#create', :via =>[:get, :post]
   get 'auth' => 'sessions#create'

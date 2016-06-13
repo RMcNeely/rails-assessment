@@ -3,52 +3,10 @@
   <p class="lead">Take a look at all the work everyone has done! Every project here was built by a student enrolled in the Learn Verified. Be sure to check out each assessment's repo for a closer look at how it was crafted. Use these to help plan what your next project, and be sure when you're finished to add it to the directory!</p>
 </div> <!-- Header Row END -->
 <div class="row small-up-2 medium-up-3 large-up-4">
-<div class="column">
-<img class="thumbnail" src="http://placehold.it/550x550">
-<h5>My Site</h5>
-</div>
-<div class="column">
-<img class="thumbnail" src="http://placehold.it/550x550">
-<h5>My Site</h5>
-</div>
-<div class="column">
-<img class="thumbnail" src="http://placehold.it/550x550">
-<h5>My Site</h5>
-</div>
-<div class="column">
-<img class="thumbnail" src="http://placehold.it/550x550">
-<h5>My Site</h5>
-</div>
-<div class="column">
-<img class="thumbnail" src="http://placehold.it/550x550">
-<h5>My Site</h5>
-</div>
-<div class="column">
-<img class="thumbnail" src="http://placehold.it/550x550">
-<h5>My Site</h5>
-</div>
-<div class="column">
-<img class="thumbnail" src="http://placehold.it/550x550">
-<h5>My Site</h5>
-</div>
-<div class="column">
-<img class="thumbnail" src="http://placehold.it/550x550">
-<h5>My Site</h5>
-</div>
-<div class="column">
-<img class="thumbnail" src="http://placehold.it/550x550">
-<h5>My Site</h5>
-</div>
-<div class="column">
-<img class="thumbnail" src="http://placehold.it/550x550">
-<h5>My Site</h5>
-</div>
-<div class="column">
-<img class="thumbnail" src="http://placehold.it/550x550">
-<h5>My Site</h5>
-</div>
-<div class="column">
-<img class="thumbnail" src="http://placehold.it/550x550">
-<h5>My Site</h5>
-</div>
+  <% @assessments.each do |assessment| %>
+    <div class="column">
+      <img class="thumbnail" src="http://placehold.it/550x550">
+      <a href="/assessment/<%= assessment.slug %>"><h5><%= assessment.name %></h5></a>
+    </div>
+  <% end %>
 </div>

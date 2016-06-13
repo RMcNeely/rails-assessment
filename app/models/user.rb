@@ -16,4 +16,7 @@ class User < ActiveRecord::Base
 
   has_many  :skills
   has_many  :assessments, through: :skills
+
+  extend Slugifiable::ClassMethods
+  include Slugifiable::InstanceMethods
 end
