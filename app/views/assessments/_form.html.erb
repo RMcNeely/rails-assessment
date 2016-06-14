@@ -7,10 +7,10 @@
 <%= f.text_field :link, placeholder: "Your Repo Here", required: true %>
 
 <%= f.label :"Add The Tested Skills" %>
-<%= f.collection_check_boxes :tested_skills, Skill.unique_skills, :id, :name%>
+<%= f.collection_check_boxes :skill_ids, Skill.unique_skills, :id, :name%>
 
 <%= f.label :"Or add a new skill:" %>
-<%= f.text_field :add_new_tested_skills, placeholder: "eg. Testing"%>
+<%= f.text_field :before_add_for_skills, placeholder: "eg. Testing"%>
 
 <%= f.submit "Submit New Assessment" %>
 

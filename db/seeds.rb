@@ -7,17 +7,15 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 password = "password"
 
-ruby = Skill.create(name: "Ruby")
-html = Skill.create(name: "HTML")
-css = Skill.create(name: "CSS")
-rails = Skill.create(name: "Rails")
-orms = Skill.create(name: "ActiveRecord")
-sinatra = Skill.create(name: "Sinatra")
-cli = Skill.create(name: "Command Line")
+#ruby = Skill.create(name: "Ruby")
+#html = Skill.create(name: "HTML")
+#css = Skill.create(name: "CSS")
+#rails = Skill.create(name: "Rails")
+#orms = Skill.create(name: "ActiveRecord")
+#sinatra = Skill.create(name: "Sinatra")
+#cli = Skill.create(name: "Command Line")
 
 ror_users = []
-
-
 
 8.times do |user|
   user = User.new
@@ -40,9 +38,9 @@ ror_users.each do |x|
  x.skills << orms = Skill.create(name: "ActiveRecord")
  x.skills << sinatra = Skill.create(name: "Sinatra")
  x.skills << cli = Skill.create(name: "Command Line")
- x.skills.first.build_assessment(name: Faker::App.name)
- x.skills[3].build_assessment(name: Faker::App.name, link: Faker::Internet.url('github.com'))
- x.skills[5].build_assessment(name: Faker::App.name, link: Faker::Internet.url('github.com'))
+ x.skills.first.create_assessment(name: Faker::App.name)
+ Assessment.create(name: Faker::App.name, link: Faker::Internet.url('github.com'), skill_id: Skill.all[0].id)
+ Assessment.create(name: Faker::App.name, link: Faker::Internet.url('github.com'), skill_id: Skill.all[3].id)
 end
 
 sinatra_users = []
@@ -63,8 +61,8 @@ sinatra_users.each do |x|
   x.skills << orms = Skill.create(name: "ActiveRecord")
   x.skills << sinatra = Skill.create(name: "Sinatra")
   x.skills << cli = Skill.create(name: "Command Line")
-  x.skills.first.build_assessment(name: Faker::App.name, link: Faker::Internet.url('github.com'))
-  x.skills[4].build_assessment(name: Faker::App.name, link: Faker::Internet.url('github.com'))
+  Assessment.create(name: Faker::App.name, link: Faker::Internet.url('github.com'), skill_id: Skill.all[0].id)
+  Assessment.create(name: Faker::App.name, link: Faker::Internet.url('github.com'), skill_id: Skill.all[4].id)
  end
 
  ruby_users = []
@@ -83,5 +81,6 @@ sinatra_users.each do |x|
    x.skills << html= Skill.create(name: "HTML")
    x.skills << css = Skill.create(name: "CSS")
    x.skills << cli = Skill.create(name: "Command Line")
-   x.skills.first.build_assessment(name: Faker::App.name, link: Faker::Internet.url('github.com'))
+   Assessment.create(name: Faker::App.name, link: Faker::Internet.url('github.com'), skill_id: Skill.first.id)
+   #binding.pry
   end

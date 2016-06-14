@@ -10,7 +10,7 @@ class AssessmentsController < ApplicationController
   end
 
   def create
-    params[:assessment][:skill].delete_if {|x| x == ""}
+    params[:assessment][:skill_ids].delete_if {|x| x == ""}
     binding.pry
     @assessment = Assessment.new(assessment_params)
     @assessment.associate_skills_to_assessment(assessment_params)
@@ -29,6 +29,6 @@ class AssessmentsController < ApplicationController
   end
 
   def assessment_params
-    params.require(:assessment).permit(:name, :slug, :skill, :add_new_tested_skills)
+    params.require(:assessment).permit(:name, :slug, :link, :before_add_for_skills, :add_new_tested_skills, :skill_ids =>[])
   end
 end
