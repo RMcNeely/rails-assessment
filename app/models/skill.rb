@@ -1,7 +1,6 @@
 class Skill < ActiveRecord::Base
   belongs_to  :user
-  has_many  :assessments
-  has_many  :tested_skills
+  belongs_to  :assessment
 
   extend Slugifiable::ClassMethods
   include Slugifiable::InstanceMethods

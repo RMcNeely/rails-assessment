@@ -5,6 +5,12 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:github]
 
+  has_many  :skills
+  has_many  :assessments, through: :skills
+
+  extend Slugifiable::ClassMethods
+  include Slugifiable::InstanceMethods
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
@@ -14,11 +20,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  has_many  :skills
-  has_many  :assessments, through: :skills
-
-  extend Slugifiable::ClassMethods
-  include Slugifiable::InstanceMethods
 
   def assessments
     self.skills.each do |skill|
