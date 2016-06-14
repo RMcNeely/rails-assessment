@@ -1,14 +1,17 @@
-<% form_for @assessment do |f| %>
+<%= form_for(@assessment, html: {class: "small"}) do |f| %>
 
 <%= f.label :name  %>
-<%= f.text_field :name %>
+<%= f.text_field :name, placeholder: "Name", required: true%>
 
-<%= f.label :"Add It's Language" %>
-<%= f.text_field :'assessments_skill[language]'%>
+<%= f.label :link %>
+<%= f.text_field :link, placeholder: "Your Repo Here", required: true %>
 
-<%= f.label :"Add It's Skills" %>
-<%= f.text_field :assessments_skills[:name]%>
+<%= f.label :"Add The Tested Skills" %>
+<%= f.collection_check_boxes :tested_skills, Skill.unique_skills, :id, :name%>
 
-<%= f.submit %>
+<%= f.label :"Or add a new skill:" %>
+<%= f.text_field :add_new_tested_skills, placeholder: "eg. Testing"%>
+
+<%= f.submit "Submit New Assessment" %>
 
 <% end %>

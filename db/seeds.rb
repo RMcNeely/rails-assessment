@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 password = "password"
 
-ruby = Skill.create(language: "Ruby")
+ruby = Skill.create(name: "Ruby")
 html = Skill.create(name: "HTML")
 css = Skill.create(name: "CSS")
 rails = Skill.create(name: "Rails")
@@ -33,16 +33,16 @@ end
 #end
 
 ror_users.each do |x|
- x.skills << ruby
- x.skills << html
- x.skills << css
- x.skills << rails
- x.skills << orms
- x.skills << sinatra
- x.skills << cli
+ x.skills << ruby = Skill.create(name: "Ruby")
+ x.skills << html = Skill.create(name: "HTML")
+ x.skills << css = Skill.create(name: "CSS")
+ x.skills << rails = Skill.create(name: "Rails")
+ x.skills << orms = Skill.create(name: "ActiveRecord")
+ x.skills << sinatra = Skill.create(name: "Sinatra")
+ x.skills << cli = Skill.create(name: "Command Line")
  x.skills.first.assessments.create(name: Faker::App.name)
- x.skills[3].assessments.create(name: Faker::App.name)
- x.skills[5].assessments.create(name: Faker::App.name)
+ x.skills[3].assessments.create(name: Faker::App.name, link: Faker::Internet.url('github.com'))
+ x.skills[5].assessments.create(name: Faker::App.name, link: Faker::Internet.url('github.com'))
 end
 
 sinatra_users = []
@@ -57,14 +57,14 @@ sinatra_users = []
 end
 
 sinatra_users.each do |x|
-  x.skills << ruby
-  x.skills << html
-  x.skills << css
-  x.skills << orms
-  x.skills << sinatra
-  x.skills << cli
-  x.skills.first.assessments.create(name: Faker::App.name)
-  x.skills[4].assessments.create(name: Faker::App.name)
+  x.skills << ruby = Skill.create(name: "Ruby")
+  x.skills << html= Skill.create(name: "HTML")
+  x.skills << css = Skill.create(name: "CSS")
+  x.skills << orms = Skill.create(name: "ActiveRecord")
+  x.skills << sinatra = Skill.create(name: "Sinatra")
+  x.skills << cli = Skill.create(name: "Command Line")
+  x.skills.first.assessments.create(name: Faker::App.name, link: Faker::Internet.url('github.com'))
+  x.skills[4].assessments.create(name: Faker::App.name, link: Faker::Internet.url('github.com'))
  end
 
  ruby_users = []
@@ -79,9 +79,9 @@ sinatra_users.each do |x|
  end
 
  ruby_users.each do |x|
-   x.skills << ruby
-   x.skills << html
-   x.skills << css
-   x.skills << cli
-   x.skills.first.assessments.create(name: Faker::App.name)
+   x.skills << ruby = Skill.create(name: "Ruby")
+   x.skills << html= Skill.create(name: "HTML")
+   x.skills << css = Skill.create(name: "CSS")
+   x.skills << cli = Skill.create(name: "Command Line")
+   x.skills.first.assessments.create(name: Faker::App.name, link: Faker::Internet.url('github.com'))
   end

@@ -19,4 +19,10 @@ class User < ActiveRecord::Base
 
   extend Slugifiable::ClassMethods
   include Slugifiable::InstanceMethods
+
+  def assessments
+    self.skills.each do |skill|
+      skill.assessments.collect
+    end
+  end
 end
