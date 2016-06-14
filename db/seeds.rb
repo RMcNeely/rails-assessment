@@ -18,17 +18,13 @@ password = "password"
 ror_users = []
 
 8.times do |user|
-  user = User.new
+  user = Student.new
   user.name = Faker::Name.name
   user.email = Faker::Internet.email
   user.password = Faker::Internet.password
   user.save
   ror_users << user
 end
-
-#8.times do
-#  ror_users.push(User.create(name: Faker::Name.name, email: Faker::Internet.email, encrypted_password: User.new(:password => password).encrypted_password))
-#end
 
 ror_users.each do |x|
  x.skills << ruby = Skill.create(name: "Ruby")
@@ -38,15 +34,28 @@ ror_users.each do |x|
  x.skills << orms = Skill.create(name: "ActiveRecord")
  x.skills << sinatra = Skill.create(name: "Sinatra")
  x.skills << cli = Skill.create(name: "Command Line")
- x.skills.first.create_assessment(name: Faker::App.name)
- Assessment.create(name: Faker::App.name, link: Faker::Internet.url('github.com'), skill_id: Skill.all[0].id)
- Assessment.create(name: Faker::App.name, link: Faker::Internet.url('github.com'), skill_id: Skill.all[3].id)
+ a = Assessment.create(name: Faker::App.name, link: Faker::Internet.url('github.com'), student_id: x.id)
+ b = Assessment.create(name: Faker::App.name, link: Faker::Internet.url('github.com'), student_id: x.id)
+ a.skills << ruby
+ a.skills << html
+ a.skills << css
+ a.skills << orms
+ a.skills << sinatra
+ a.skills << cli
+ a.skills << rails
+ b.skills << rails
+ b.skills << ruby
+ b.skills << html
+ b.skills << css
+ b.skills << orms
+ b.skills << sinatra
+ b.skills << cli
 end
 
 sinatra_users = []
 
 4.times do |user|
-  user = User.new
+  user = Student.new
   user.name = Faker::Name.name
   user.email = Faker::Internet.email
   user.password = Faker::Internet.password
@@ -55,20 +64,33 @@ sinatra_users = []
 end
 
 sinatra_users.each do |x|
+  a = Assessment.create(name: Faker::App.name, link: Faker::Internet.url('github.com'), student_id: x.id)
+  b = Assessment.create(name: Faker::App.name, link: Faker::Internet.url('github.com'), student_id: x.id)
   x.skills << ruby = Skill.create(name: "Ruby")
   x.skills << html= Skill.create(name: "HTML")
   x.skills << css = Skill.create(name: "CSS")
   x.skills << orms = Skill.create(name: "ActiveRecord")
   x.skills << sinatra = Skill.create(name: "Sinatra")
   x.skills << cli = Skill.create(name: "Command Line")
-  Assessment.create(name: Faker::App.name, link: Faker::Internet.url('github.com'), skill_id: Skill.all[0].id)
-  Assessment.create(name: Faker::App.name, link: Faker::Internet.url('github.com'), skill_id: Skill.all[4].id)
+  a.skills << ruby
+  a.skills << html
+  a.skills << css
+  a.skills << orms
+  a.skills << sinatra
+  a.skills << cli
+  b.skills << ruby
+  b.skills << html
+  b.skills << css
+  b.skills << orms
+  b.skills << sinatra
+  b.skills << cli
+
  end
 
  ruby_users = []
 
  4.times do |user|
-   user = User.new
+   user = Student.new
    user.name = Faker::Name.name
    user.email = Faker::Internet.email
    user.password = Faker::Internet.password
@@ -81,6 +103,9 @@ sinatra_users.each do |x|
    x.skills << html= Skill.create(name: "HTML")
    x.skills << css = Skill.create(name: "CSS")
    x.skills << cli = Skill.create(name: "Command Line")
-   Assessment.create(name: Faker::App.name, link: Faker::Internet.url('github.com'), skill_id: Skill.first.id)
-   #binding.pry
+   a = Assessment.create(name: Faker::App.name, link: Faker::Internet.url('github.com'), student_id: x.id)
+   a.skills << ruby
+   a.skills << html
+   a.skills << css
+   a.skills << cli
   end
