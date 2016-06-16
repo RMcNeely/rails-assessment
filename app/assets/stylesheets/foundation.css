@@ -4263,8 +4263,8 @@ table.hover tr:nth-of-type(even):hover {
   .logo-wrapper {
     position: relative; }
     .logo-wrapper .logo {
-      width: 118px;
-      height: 92px;
+      width: 5em;
+      height: 5em;
       position: absolute;
       left: 50%;
       right: 50%;
@@ -4284,6 +4284,23 @@ table.hover tr:nth-of-type(even):hover {
       float: right; } }
 
 .box {
+  text-align: center;
   border: 2px;
   border-color: black;
+  border-radius: 2px;
+  border-style: outset;
+  padding: 2em;
+  margin: 3em;
+  border-radius: 4em;
+}
+a .box p {
+
+    color: black;
+    text-decoration: none;
+    line-height: inherit;
+    cursor: pointer; }
+    a:hover, a:focus {
+      color: #258faf; }
+    a img {
+      border: 0; }
 }

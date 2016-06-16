@@ -1,0 +1,18 @@
+<div class="row"><!-- ONE DIV TO RULE THEM ALL-->
+
+<%= form_for @student do |f| %>
+
+<%= f.label :'Change Status:'%>
+<%= f.text_field :status%>
+
+<%= f.label :'Change Bio:'%>
+<%= f.text_area :bio%>
+
+<%= f.label :'Add a Skill:'  %>
+<%= f.text_field :before_add_for_skills, placeholder: "Today I Learned..." %>
+
+<%= f.submit "Update Profile" %>
+
+<% end %>
+
+</div><!-- ONE DIV TO RULE THEM ALL END-->

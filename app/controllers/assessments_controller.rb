@@ -6,7 +6,9 @@ class AssessmentsController < ApplicationController
   end
 
   def new
+    @student = Student.find_by(id: params[:student_id])
     @assessment = Assessment.new
+
   end
 
   def create

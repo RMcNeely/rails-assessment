@@ -1,3 +1,6 @@
+<div class="row image">
+  <%= image_tag "startup.jpg", alt: "Learn. Love. Code."%>
+</div>
 <div class="row small-centered"><!-- Top Row -->
   <div class="small-12 column small-centered">
 
@@ -7,16 +10,28 @@
   </p>
 </div>
 
-<div class="row small-centered"><!-- Bottom Row -->
-  <div class="columns small-6 small-centered"> <!-- First Column -->
-    <div class="box">
-      Hello!
+<div class="row "><!-- Bottom Row -->
 
+  <div class="columns small-6 float-left "> <!-- First Column -->
+    <%= link_to assessments_path do %>
+    <div class="box">
+      <%= image_tag "the-creator.jpg"%>
+      <p>
+        See our students!
+      </p>
     </div>
+    <% end %>
   </div>
 
 
-  <div class="columns small-6 small-centered"> <!-- Second Column -->
-    There!
+  <div class="columns small-6 float-right "> <!-- Second Column -->
+    <%= link_to assessments_path do %>
+    <div class="box">
+      <%= image_tag "coding.jpg"%>
+      <p>
+        Or check out their work!
+      </p>
+    </div>
+    <% end %>
   </div>
 </div><!-- Bottom Row END -->

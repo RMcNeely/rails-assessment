@@ -3,13 +3,13 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :students, :admins do
-    resources :assessments, only: [:new, :edit, :delete]
+    resources :assessments, only: [:new, :delete]
+    get 'assessment/:slug/edit' => 'assessments#edit'
   end
 
   resources :assessments, only: [:index, :show]
     get 'assessment/:slug' => 'assessments#show'
     get 'assessments' => 'assessments#index'
-    get 'assessment/:slug/edit' => 'assessments#edit'
 
   resources :skills
     get 'skill/:slug' => 'skills#show'

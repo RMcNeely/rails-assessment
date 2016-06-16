@@ -1,0 +1,75 @@
+<div class="row 12"> <!-- MASTER ROW -->
+
+<div class="column small-2 "><!-- STUDENT INFO div -->
+  <div class="column">
+    <div class="row"><!-- INFO DIV -->
+
+    <br>
+    <img class="thumbnail" src="http://placehold.it/550x350">
+    <h4>About <%= @student.name%></h4>
+    <p><%= @student.bio %></p>
+  </div><!-- INFO DIV END -->
+
+    <div class="row">
+      <h5>Links:</h5>
+      <ul>
+        <li><%=link_to "Edit Profile", edit_student_path %></li>
+        <li><%=link_to "Submit New Assessment", new_student_assessment_path(@student.id) %></li>
+      </ul>
+    </div>
+  </div>
+
+
+</div><!-- STUDENT INFO div -->
+<!--
+  <div class="off-canvas position-left reveal-for-large" id="my-info" data-off-canvas data-position="left">
+  </div>
+-->
+    <div class="off-canvas-content" data-off-canvas-content>
+    <div class="title-bar hide-for-large">
+    <div class="title-bar-left">
+    <button class="menu-icon" type="button" data-open="my-info"></button>
+    <span class="title-bar-title"> <%= @student.name%></span>
+    </div>
+  </div>
+</div>
+
+<div class="column medium-10"><!-- STUDENT'S WORK DIV -->
+
+    <div class="callout primary">
+      <div class="row column">
+        <h1>Hello! Check out <%=@student.name %>'s work.</h1>
+          <p class="lead"><%= @student.status %></p>
+      </div>
+    </div>
+
+  <div class="row">
+    <div class="column">
+      <h3>Skills:</h3>
+      <ul>
+        <% @student.skills.each do |skill| %>
+          <li><%= skill.name %> <% if skill.mastered %>
+            <strong>MASTERED! &#x2714;</strong>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row small-up-2 medium-up-3 large-up-4">
+    <% @student.assessments.each do |assessment| %>
+      <div class="column">
+      <img class="thumbnail" src="http://placehold.it/550x550">
+      <h5><a href="<%= "/assessment/#{assessment.slug}" %>"><%= assessment.name %></a>
+      <% if true %> | <%= link_to "Edit", "/students/#{@student.id}/assessment/#{assessment.slug}/edit" %>
+      <%end%>
+      </h5>
+      </div>
+    <% end %>
+  </div>
+
+</div>
+
+
+</div> <!-- MASTER ROW  END-->

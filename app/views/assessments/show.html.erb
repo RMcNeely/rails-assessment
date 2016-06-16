@@ -1,7 +1,27 @@
 <div class="row small-12">
-  <h1><%= @assessment.name %></h1>
-  <h4>A project by <%= @assessment.created_by %></h4>
-  <p>
-    Visit the repo at <a href="<%= @assessment.link %>">Github</a>
-  </p>
+  <div class="column">
+    <h1><%= @assessment.name %></h1>
+    <h4>A project by <%= link_to @assessment.created_by, "/students/#{@assessment.student.id}" %></h4>
+    <p>
+      Visit the repo at <a href="<%= @assessment.link %>">Github</a>
+    </p>
+  </div>
+</div>
+
+<div class="row small-12">
+  <div class="column">
+    <h4>Skills Displayed:</h4>
+    <ul>
+      <% @assessment.skills.each do |skill| %>
+        <li><%= skill.name %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<div class="row small-12">
+  <div class="column">
+    <h4>Screenshots:</h4>
+    <img class="thumbnail" src="http://placehold.it/550x550">
+  </div>
 </div>
