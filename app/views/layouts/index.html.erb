@@ -1,5 +1,8 @@
-<div class="row image">
-  <%= image_tag "startup.jpg", alt: "Learn. Love. Code."%>
+<div class="row image-header cabbage" >
+<%= image_tag "startup.jpg", alt: "Learn. Love. Code.", id: "header-image" %>
+  <p>
+    filler
+  </p>
 </div>
 <div class="row small-centered"><!-- Top Row -->
   <div class="small-12 column small-centered">
@@ -13,9 +16,9 @@
 <div class="row "><!-- Bottom Row -->
 
   <div class="columns small-6 float-left "> <!-- First Column -->
-    <%= link_to assessments_path do %>
+    <%= link_to students_path do %>
     <div class="box">
-      <%= image_tag "the-creator.jpg"%>
+      <%= image_tag "the-creator.jpg"%><br><br>
       <p>
         See our students!
       </p>
@@ -27,7 +30,7 @@
   <div class="columns small-6 float-right "> <!-- Second Column -->
     <%= link_to assessments_path do %>
     <div class="box">
-      <%= image_tag "coding.jpg"%>
+      <%= image_tag "coding.jpg"%><br><br>
       <p>
         Or check out their work!
       </p>

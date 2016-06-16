@@ -2,6 +2,8 @@ class Skill < ActiveRecord::Base
   belongs_to  :user
   belongs_to  :assessment
 
+  scope :mastered, -> { where(mastered: true)}
+
   extend Slugifiable::ClassMethods
   include Slugifiable::InstanceMethods
 

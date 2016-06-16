@@ -44,10 +44,22 @@
     </div>
 
   <div class="row">
-    <div class="column">
-      <h3>Skills:</h3>
+    <div class="columns small-6">
+      <h3>All Skills:</h3>
       <ul>
         <% @student.skills.each do |skill| %>
+          <li><%= skill.name %> <% if skill.mastered %>
+            <strong>MASTERED! &#x2714;</strong>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="columns small-6">
+      <h3>Mastered Skills:</h3>
+      <ul>
+        <% @student.skills.mastered.each do |skill| %>
           <li><%= skill.name %> <% if skill.mastered %>
             <strong>MASTERED! &#x2714;</strong>
             <% end %>

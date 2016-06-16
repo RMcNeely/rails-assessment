@@ -1504,6 +1504,7 @@ select {
     [data-whatinput='mouse'] .menu > li {
       outline: 0; }
   .menu > li > a {
+    color: white;
     display: block;
     padding: 0.7rem 1rem;
     line-height: 1; }
@@ -1960,7 +1961,7 @@ select {
     clear: both; }
   .top-bar,
   .top-bar ul {
-    background-color: #e6e6e6; }
+    background-color: #00bce1; }
   .top-bar input {
     max-width: 200px;
     margin-right: 1rem; }
@@ -4264,12 +4265,13 @@ table.hover tr:nth-of-type(even):hover {
     position: relative; }
     .logo-wrapper .logo {
       width: 5em;
-      height: 5em;
       position: absolute;
       left: 50%;
       right: 50%;
-      top: -6px;
-      margin-left: -59px; }
+      top: 12px;
+      margin-left: -59px;
+
+      }
 
   .top-bar-right {
     width: 50%;
@@ -4285,22 +4287,29 @@ table.hover tr:nth-of-type(even):hover {
 
 .box {
   text-align: center;
-  border: 2px;
-  border-color: black;
-  border-radius: 2px;
-  border-style: outset;
   padding: 2em;
   margin: 3em;
   border-radius: 4em;
+  background-color: #595db1;
 }
 a .box p {
 
-    color: black;
+    color: white;
     text-decoration: none;
     line-height: inherit;
     cursor: pointer; }
     a:hover, a:focus {
-      color: #258faf; }
+      color: #white; }
     a img {
       border: 0; }
+}
+
+img#header-image {
+    background: red;
+    max-width: 100%;
+}
+
+div.row.header-image.cabbage{
+background: red;
+max-width: 100%;
 }
