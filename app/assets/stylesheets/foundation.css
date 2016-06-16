@@ -4305,11 +4305,10 @@ a .box p {
 }
 
 img#header-image {
-    background: red;
     max-width: 100%;
 }
 
-div.row.header-image.cabbage{
-background: red;
+div#cabbage {
 max-width: 100%;
+
 }
