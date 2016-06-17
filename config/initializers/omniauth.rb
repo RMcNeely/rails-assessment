@@ -1,7 +1,7 @@
 #OmniAuth.config.full_host = 'http://localhost:3000'
 
 Rails.application.config.middleware.use OmniAuth::Builder do
-  require 'openid/store/filesystem'
+#  require 'openid/store/filesystem'
   provider :github, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET']
 #    {
 #        :client_options => {
@@ -10,5 +10,5 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 #          :token_url => 'https://localhost:3000/login/oauth/access_token',
 #        }
 #      }
-  provider :openid, :store => OpenID::Store::Filesystem.new('/tmp')
+#  provider :openid, :store => OpenID::Store::Filesystem.new('/tmp')
 end

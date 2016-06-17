@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
+  #get '/users/auth/github/callback' => 'sessions#create'
+  #match 'auth/github/callback' => 'sessions#create', :via =>[:get, :post]
 
-  resources :students, :admins do
+  resources :students do
     resources :assessments, only: [:new, :delete]
     get 'assessment/:slug/edit' => 'assessments#edit'
   end
@@ -13,11 +15,10 @@ Rails.application.routes.draw do
     get 'assessments' => 'assessments#index'
     get 'assessment/:id' => 'assessment#destroy'
 
-  resources :skills
+  #resources :skills
     get 'skill/:slug' => 'skills#show'
     get 'skill/:slug/edit' => 'skills#edit'
 
-  match 'auth/github/callback' => 'sessions#create', :via =>[:get, :post]
 #  get 'auth' => 'sessions#create'
 #  get 'auth/github' => 'sessions#create'
 #  get 'auth/' => 'sessions#create'

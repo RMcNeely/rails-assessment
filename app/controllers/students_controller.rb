@@ -3,6 +3,7 @@ class StudentsController < ApplicationController
   load_and_authorize_resource
 
   def index
+    binding.pry
     @students = Student.all
   end
 

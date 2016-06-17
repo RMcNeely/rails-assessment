@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
 
   def index
-    binding.pry
+    #binding.pry
     if current_user
       session[:user_id] = current_user.id
     end
