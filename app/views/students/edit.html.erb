@@ -11,6 +11,14 @@
 <%= f.label :'Add a Skill:'  %>
 <%= f.text_field :before_add_for_skills, placeholder: "Today I Learned..." %>
 
+<% if can? :manage, @student %>
+
+<%= f.label :"Mark Skills Mastered" %>
+<%= f.collection_check_boxes :mastered_skills, Skill.unique_skills, :id, :name%>
+  <p>
+    butterscotch
+  </p>
+<% end %>
 <%= f.submit "Update Profile" %>
 
 <% end %>

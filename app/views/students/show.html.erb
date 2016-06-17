@@ -11,11 +11,13 @@
   </div><!-- INFO DIV END -->
 
     <div class="row">
+      <% if can? :update, @student %>
       <h5>Links:</h5>
       <ul>
         <li><%=link_to "Edit Profile", edit_student_path %></li>
         <li><%=link_to "Submit New Assessment", new_student_assessment_path(@student.id) %></li>
       </ul>
+      <% end %>
     </div>
   </div>
 
@@ -48,9 +50,7 @@
       <h3>All Skills:</h3>
       <ul>
         <% @student.skills.each do |skill| %>
-          <li><%= skill.name %> <% if skill.mastered %>
-            <strong>MASTERED! &#x2714;</strong>
-            <% end %>
+          <li><%= skill.name %> 
           </li>
         <% end %>
       </ul>
@@ -74,7 +74,7 @@
       <div class="column">
       <img class="thumbnail" src="http://placehold.it/550x550">
       <h5><a href="<%= "/assessment/#{assessment.slug}" %>"><%= assessment.name %></a>
-      <% if true %> | <%= link_to "Edit", "/students/#{@student.id}/assessment/#{assessment.slug}/edit" %>
+      <% if can? :change, @student  %> | <%= link_to "Edit", "/students/#{@student.id}/assessment/#{assessment.slug}/edit" %>
       <%end%>
       </h5>
       </div>

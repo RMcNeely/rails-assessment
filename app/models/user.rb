@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:github]
 
+  validates :name, presence: true
   has_many  :skills
   has_many  :assessments, through: :skills
 

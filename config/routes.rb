@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :admins
+
   devise_for :users
 
   resources :students, :admins do
@@ -7,16 +7,18 @@ Rails.application.routes.draw do
     get 'assessment/:slug/edit' => 'assessments#edit'
   end
 
-  resources :assessments, only: [:index, :show]
+  resources :assessments, only: [:index, :show, :delete]
     get 'assessment/:slug' => 'assessments#show'
+    delete 'assessments/:slug' => 'assessments#destroy'
     get 'assessments' => 'assessments#index'
+    get 'assessment/:id' => 'assessment#destroy'
 
   resources :skills
     get 'skill/:slug' => 'skills#show'
     get 'skill/:slug/edit' => 'skills#edit'
 
-#  match 'auth/github' => 'sessions#create', :via =>[:get, :post]
-  get 'auth' => 'sessions#create'
+  match 'auth/github/callback' => 'sessions#create', :via =>[:get, :post]
+#  get 'auth' => 'sessions#create'
 #  get 'auth/github' => 'sessions#create'
 #  get 'auth/' => 'sessions#create'
 #  get 'login/oauth/authorize'

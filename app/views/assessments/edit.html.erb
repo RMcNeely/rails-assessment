@@ -1,3 +1,11 @@
 <div class="row">
   <%= render 'form' %>
+
+  <br>
+  <%= link_to "Delete", @assesment, method: :delete, data: { confirm: "Really?" } %>
+  <%= form_tag assessment_path(@assessment.slug), method: "delete" %>
+    <%= submit_tag "Delete #{@assessment.name}" %>
+
+
+
 </div>

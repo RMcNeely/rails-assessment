@@ -4298,10 +4298,11 @@ a .box p {
     text-decoration: none;
     line-height: inherit;
     cursor: pointer; }
-    a:hover, a:focus {
+
+a:hover, a:focus {
       color: #white; }
-    a img {
-      border: 0; }
+a div.box img {
+      border-radius: .75em; }
 }
 
 img#header-image {

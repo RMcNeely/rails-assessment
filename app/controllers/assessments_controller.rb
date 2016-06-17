@@ -1,4 +1,6 @@
 class AssessmentsController < ApplicationController
+  load_and_authorize_resource
+
   def index
     @current_user = current_user
     #binding.pry
@@ -31,6 +33,11 @@ class AssessmentsController < ApplicationController
 
   def update
 
+  end
+
+  def destroy
+    @assessments = Assessment.find_by_slug(params[:slug]).destroy
+    redirect_to assessments_path
   end
 
   def assessment_params

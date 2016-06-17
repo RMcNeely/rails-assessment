@@ -1,11 +1,15 @@
 class SessionsController < ApplicationController
 
+  mapping = Devise.mappings[:user]
+
   def new
-    login_path
+    binding.pry
+
+    session[:user_id] = current_user.id
   end
 
   def create
-#    binding.pry
+    binding.pry
     user = User.find_or_create_by(:uid => auth['uid']) do |u|
       u.name = auth['info']['name']
       u.email = auth['info']['email']
@@ -23,8 +27,7 @@ class SessionsController < ApplicationController
   #end
 
   def destroy
-    session.delete  :user_id
-   redirect_to root_path
+    session.clear
+    redirect_to root_path
   end
-
 end

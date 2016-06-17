@@ -3,7 +3,8 @@
     <h1><%= @assessment.name %></h1>
     <h4>A project by <%= link_to @assessment.created_by, "/students/#{@assessment.student.id}" %></h4>
     <p>
-      Visit the repo at <a href="<%= @assessment.link %>">Github</a>
+      Visit the repo at <a href="<%= @assessment.link %>">Github</a><% if can? :change, @assessment  %> | <%= link_to "Edit", "/students/#{@assessment.student.id}/assessment/#{@assessment.slug}/edit" %>
+      <%end%>
     </p>
   </div>
 </div>
