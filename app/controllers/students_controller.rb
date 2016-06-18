@@ -33,4 +33,9 @@ class StudentsController < ApplicationController
     params.require(:student).permit(:bio, :status, :before_add_for_skills, :mastered_skills => [])
   end
 
+  def current_ability
+    @current_ability ||= Ability.new(current_user, session)
+end
+
+
 end

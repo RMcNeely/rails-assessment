@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
-  #get '/users/auth/github/callback' => 'sessions#create'
-  #match 'auth/github/callback' => 'sessions#create', :via =>[:get, :post]
+  
 
   resources :students do
     resources :assessments, only: [:new, :delete]

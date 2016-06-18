@@ -1,3 +1,5 @@
+<%= session[:flash]%>
+<%= session[:error]%> 
 <div class="row image-header" id="cabbage" >
   <%= image_tag "startup.jpg", alt: "Learn. Love. Code.", id: "header-image" %>
 </div>
@@ -11,7 +13,7 @@
   </p>
 </div>
 
-<%= link_to "Checking", user_omniauth_authorize_path(:github) %>
+<%= link_to "Checking", user_omniauth_callback_path(:github) %>
 
 <div class="row "><!-- Bottom Row -->
 
