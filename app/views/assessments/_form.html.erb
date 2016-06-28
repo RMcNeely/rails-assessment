@@ -1,17 +1,39 @@
 <%= form_for(@assessment, html: {class: "small"}) do |f| %>
 
+<%= f.hidden_field :user_id, value: @user.id %>
+
 <%= f.label :name  %>
 <%= f.text_field :name, placeholder: "Name", required: true%>
 
 <%= f.label :link %>
 <%= f.text_field :link, placeholder: "Your Repo Here", required: true %>
 
-<%= f.label :"Add The Tested Skills" %>
-<%= f.collection_check_boxes :skill_ids, Skill.unique_skills, :id, :name%>
+<% if can? :manage, @assessment %>
 
+<%= f.label :'Mastered?'%>
+<%= f.radio_button :completed, true  %><%= f.label :"Yes"%> <%= f.radio_button :completed, false %><%= f.label :"No"%>
+
+<% end %><br>
+
+<%= f.label :"Add The Tested Skills" %>
+<%= f.collection_check_boxes :skill_ids, Skill.all, :id, :name%>
+
+<%= f.fields_for :skills, @assessment.skills.build do |skill|%>
+<%= f.label :'Or add some new skills:' %>
+<%= skill.text_field :name,  placeholder: "eg. Testing" %><br>
+<% end %>
+
+<%= f.fields_for :skills, @assessment.skills.build do |skill|%>
+<%= skill.text_field :name, placeholder: "eg. Quality Assurance" %><br>
+<% end %>
+
+<%= f.fields_for :skills, @assessment.skills.build do |skill|%>
+<%= skill.text_field :name, placeholder: "eg. Deployment" %><br>
+<% end %>
+<!--
 <%= f.label :"Or add a new skill:" %>
 <%= f.text_field :before_add_for_skills, placeholder: "eg. Testing"%>
-
+-->
 <%= f.submit "Submit New Assessment" %>
 
 <% end %>

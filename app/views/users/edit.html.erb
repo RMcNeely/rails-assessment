@@ -1,0 +1,15 @@
+<div class="row"><!-- ONE DIV TO RULE THEM ALL-->
+
+<%= form_for @user do |f| %>
+
+<%= f.label :'Change Status:'%>
+<%= f.text_field :status%>
+
+<%= f.label :'Change Bio:'%>
+<%= f.text_area :bio%>
+
+<%= f.submit "Update Profile" %>
+
+<% end %>
+
+</div><!-- ONE DIV TO RULE THEM ALL END-->

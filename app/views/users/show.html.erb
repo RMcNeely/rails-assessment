@@ -1,0 +1,87 @@
+<div class="row 12"> <!-- MASTER ROW -->
+<div class="column small-2 "><!-- STUDENT INFO div -->
+  <div class="column">
+    <div class="row"><!-- INFO DIV -->
+
+    <br>
+    <img class="thumbnail" src="http://placehold.it/550x350">
+    <h4>About <%= @user.name%></h4>
+    <p><%= @user.bio %></p>
+  </div><!-- INFO DIV END -->
+
+    <div class="row">
+      <% if can? :modify, @user %>
+      <h5>Links:</h5>
+      <ul>
+        <li><%=link_to "Edit Profile", edit_user_path %></li>
+        <li><%=link_to "Submit New Assessment", new_user_assessment_path(@user.id) %></li>
+      </ul>
+      <% end %>
+    </div>
+  </div>
+
+
+</div><!-- STUDENT INFO div -->
+<!--
+  <div class="off-canvas position-left reveal-for-large" id="my-info" data-off-canvas data-position="left">
+  </div>
+-->
+    <div class="off-canvas-content" data-off-canvas-content>
+    <div class="title-bar hide-for-large">
+    <div class="title-bar-left">
+    <button class="menu-icon" type="button" data-open="my-info"></button>
+    <span class="title-bar-title"> <%= @user.name%></span>
+    </div>
+  </div>
+</div>
+
+<div class="column medium-10"><!-- STUDENT'S WORK DIV -->
+
+    <div class="callout primary">
+      <div class="row column">
+        <h1>Hello! Check out <%=@user.name %>'s work.</h1>
+          <p class="lead"><%= @user.status %></p>
+      </div>
+    </div>
+
+  <div class="row">
+    <div class="columns small-6">
+      <h3>All Skills:</h3>
+      <ul>
+        <% @user.assessment_skills.unique_skills.each do |as| %>
+          <li><%= as %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="columns small-6">
+      <h3>Completed Assessments:</h3>
+      <ul>
+        <% @user.assessments.each  do |assessment| %>
+          <% if assessment.completed %>
+          <li><%= assessment.name %>
+            <strong>COMPLETED! &#x2714;</strong>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row small-up-2 medium-up-3 large-up-4">
+    <% @user.assessments.each do |assessment| %>
+      <div class="column">
+      <img class="thumbnail" src="http://placehold.it/550x550">
+      <h5><a href="<%= "/assessment/#{assessment.slug}" %>"><%= assessment.name %></a>
+      <% if can? :modify, @user  %> | <%= link_to "Edit", "/users/#{@user.id}/assessment/#{assessment.slug}/edit" %>
+      <%end%>
+      </h5>
+      </div>
+    <% end %>
+  </div>
+
+</div>
+
+
+</div> <!-- MASTER ROW  END-->

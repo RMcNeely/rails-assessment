@@ -31,7 +31,7 @@
 <!-- Left Nav Section -->
 <div class="top-bar-left">
   <ul class="vertical medium-horizontal menu">
-    <li><a href="/students">Students</a></li>
+    <li><a href="/users">Students</a></li>
     <li><a href="/assessments">Assessments</a></li>
   </ul>
 </div>
@@ -40,7 +40,7 @@
     <div class="top-bar-right">
       <ul class="vertical medium-horizontal menu">
         <li><a href="#"><input type="search" name="Find" value="Search"></a></li>
-        <li><%= session[:user_id] ? (link_to "Sign Out", users_sign_out_path) :  (link_to "Sign In", new_user_session_path ) %></li>
+        <li><%= session[:user_id] ? (link_to "Sign Out", "sign_out") :  (link_to "Sign In", new_user_session_path ) %></li>
       </ul>
     </div>
 </nav>

@@ -5,9 +5,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:github]
 
-  validates :name, presence: true
-  has_many  :skills
-  has_many  :assessments, through: :skills
+  validates :name, :email, presence: true, uniqueness: true
+
+  has_many  :assessments
+  has_many  :assessment_skills, through: :assessments
+  has_many  :skills, through: :assessments
 
   extend Slugifiable::ClassMethods
   include Slugifiable::InstanceMethods
@@ -23,9 +25,4 @@ class User < ActiveRecord::Base
   end
 
 
-  def assessments
-    self.skills.each do |skill|
-      skill.assessments.collect
-    end
-  end
 end

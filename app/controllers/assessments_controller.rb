@@ -8,19 +8,17 @@ class AssessmentsController < ApplicationController
   end
 
   def new
-    @student = Student.find_by(id: params[:student_id])
+    @user = User.find_by(id: params[:user_id])
     @assessment = Assessment.new
 
   end
 
   def create
-    params[:assessment][:skill_ids].delete_if {|x| x == ""}
     binding.pry
-    @assessment = Assessment.create(assessment_params[:name])
-    @assessment.associate_skills_to_assessment(assessment_params)
-    @assessment.add_new_skills(assessment_params)
+  #  params[:assessment][:skill_ids].delete_if {|x| x == ""}
+    @assessment = Assessment.new(assessment_params)
     @assessment.save
-    redirect_to '/assessments'
+    redirect_to user_path(@assessment.user.id)
   end
 
   def show
@@ -29,10 +27,13 @@ class AssessmentsController < ApplicationController
 
   def edit
     @assessment = Assessment.find_by_slug(params[:slug])
+    @user = User.find_by(id: params[:user_id])
   end
 
   def update
-
+    binding.pry
+    @assessment.update(assessment_params)
+    redirect_to user_path(assessment_params[:user_id])
   end
 
   def destroy
@@ -41,6 +42,13 @@ class AssessmentsController < ApplicationController
   end
 
   def assessment_params
-    params.require(:assessment).permit(:name, :slug, :link, :before_add_for_skills, :add_new_tested_skills, :skill_ids =>[])
+    params.require(:assessment).permit(:name, :link, :user_id, :completed, :skill_ids =>[], skills_attributes:[:name])
   end
+
+  def current_ability
+    @current_ability ||= Ability.new(current_user, session[:user_id])
+  end
+
 end
+
+#params[:assessment][skills_attributes:{([]=>[:name])}]

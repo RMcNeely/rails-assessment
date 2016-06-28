@@ -1,18 +1,18 @@
 Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
-  
-
-  resources :students do
-    resources :assessments, only: [:new, :delete]
+  get "sign_out", :to => "sessions#destroy"
+  resources :users do
+    resources :assessments, only: [:new, :create, :edit, :delete]
     get 'assessment/:slug/edit' => 'assessments#edit'
   end
 
-  resources :assessments, only: [:index, :show, :delete]
+  resources :assessments, only: [:index, :create, :show, :delete]
     get 'assessment/:slug' => 'assessments#show'
     delete 'assessments/:slug' => 'assessments#destroy'
     get 'assessments' => 'assessments#index'
     get 'assessment/:id' => 'assessment#destroy'
+    patch 'assessments/:id'=> 'assessments#update'
 
   #resources :skills
     get 'skill/:slug' => 'skills#show'
@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 #  get 'auth/' => 'sessions#create'
 #  get 'login/oauth/authorize'
 #  post 'login/oauth/access_token' => 'sessions#create', :via =>[:get, :post]
-  get 'users/sign_out' => 'sessions#destroy'
+#  get 'users/sign_out' => 'sessions#destroy'
   root 'application#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

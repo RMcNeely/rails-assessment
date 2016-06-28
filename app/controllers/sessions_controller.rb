@@ -15,6 +15,7 @@ class SessionsController < ApplicationController
       u.email = auth['info']['email']
     end
     session[:user_id] = user.id
+    current_user = user
     session[:user_id].blank? ? redirect_to(new_user_session_path) : redirect_to(root_path)
   end
 

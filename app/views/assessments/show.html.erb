@@ -1,9 +1,9 @@
 <div class="row small-12">
   <div class="column">
     <h1><%= @assessment.name %></h1>
-    <h4>A project by <%= link_to @assessment.created_by, "/students/#{@assessment.student.id}" %></h4>
+    <h4>A project by <%= link_to @assessment.created_by, "/users/#{@assessment.user.id}" %></h4>
     <p>
-      Visit the repo at <a href="<%= @assessment.link %>">Github</a><% if can? :change, @assessment  %> | <%= link_to "Edit", "/students/#{@assessment.student.id}/assessment/#{@assessment.slug}/edit" %>
+      Visit the repo at <a href="<%= @assessment.link %>">Github</a><% if can? :modify, @assessment.user  %> | <%= link_to "Edit", "/users/#{@assessment.user.id}/assessment/#{@assessment.slug}/edit" %>
       <%end%>
     </p>
   </div>
@@ -13,8 +13,8 @@
   <div class="column">
     <h4>Skills Displayed:</h4>
     <ul>
-      <% @assessment.skills.each do |skill| %>
-        <li><%= skill.name %></li>
+      <% @assessment.skills.each do |as| %>
+        <li><%= as.name %></li>
       <% end %>
     </ul>
   </div>

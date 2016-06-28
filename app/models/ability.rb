@@ -1,21 +1,25 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(user, session)
+  def initialize(current_user, session)
+     alias_action :create, :read, :update, :destroy, :to => :modify
     # Define abilities for the passed in user here. For example:
-      user ||= User.new # guest user (not logged in)
+      user = current_user ||= User.new # guest user (not logged in)
+      #binding.pry
       if user.admin?
          can :manage, :all
       elsif user.id
-         can [:create, :update, :delete, :new],  [Assessment, User, Skill], {id: session[:user_id]}
+         can :modify, User.where(id: current_user.id)
+         can :modify, [Assessment, Skill], {user_id: current_user.id}
          can :read, :all
       else
          can :read, :all
       end
 
-      def current_user
-        @variable
+      def modify
+        can [:create, :edit, :update, :delete, :new]
       end
+
     #
     # The first argument to `can` is the action you are giving the user
     # permission to do.

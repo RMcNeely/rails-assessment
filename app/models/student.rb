@@ -1,5 +1,6 @@
 class Student < User
   has_many :assessments
+  has_many :skills, through: :assessments
 
   def mastered_skills
     self.skills.mastered
@@ -14,4 +15,5 @@ class Student < User
       skill.save
     end
   end
+
 end

@@ -5,9 +5,9 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  helper_method :current_user, :logged_in?
 
   def index
-    #binding.pry
     if current_user
       session[:user_id] = current_user.id
     end
@@ -16,12 +16,13 @@ class ApplicationController < ActionController::Base
 
   helpers do
    def logged_in?
-     !!session[:id]
+     !!session[:user_id]
    end
 
    def current_user
-     User.find_by_id(session[:id])
-   end
+     @current_user ||= User.find_by_id(session[:user_id])
+    
+    end
  end
 
 rescue_from CanCan::AccessDenied do |exception|
