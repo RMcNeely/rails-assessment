@@ -10,7 +10,8 @@ class AssessmentsController < ApplicationController
   def new
     @user = User.find_by(id: params[:user_id])
     @assessment = Assessment.new
-
+    3.times {@assessment.skills.build}
+    @skills = @assessment.skills
   end
 
   def create
@@ -28,6 +29,8 @@ class AssessmentsController < ApplicationController
   def edit
     @assessment = Assessment.find_by_slug(params[:slug])
     @user = User.find_by(id: params[:user_id])
+    @skills = []
+    3.times {@skills << @assessment.skills.build}
   end
 
   def update

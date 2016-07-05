@@ -14,16 +14,8 @@ Rails.application.routes.draw do
     get 'assessment/:id' => 'assessment#destroy'
     patch 'assessments/:id'=> 'assessments#update'
 
-  #resources :skills
-    get 'skill/:slug' => 'skills#show'
-    get 'skill/:slug/edit' => 'skills#edit'
+  get '/skills' => 'skills#index'
 
-#  get 'auth' => 'sessions#create'
-#  get 'auth/github' => 'sessions#create'
-#  get 'auth/' => 'sessions#create'
-#  get 'login/oauth/authorize'
-#  post 'login/oauth/access_token' => 'sessions#create', :via =>[:get, :post]
-#  get 'users/sign_out' => 'sessions#destroy'
   root 'application#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

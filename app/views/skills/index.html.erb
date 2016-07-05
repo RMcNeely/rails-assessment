@@ -1,1 +1,8 @@
-Skills
+<div class="row small">
+  <h2>Skills our students learn:</h2>
+  <% @skills.each do |skill| %>
+  <ul>
+    <li><%= skill.name%></li>
+  </ul>
+  <% end %>
+</div>

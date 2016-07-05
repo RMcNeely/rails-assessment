@@ -10,4 +10,8 @@ class AssessmentSkill < ActiveRecord::Base
   def skill_name
     self.skill.name || ""
   end
+
+  # def strength
+  #
+  # end
 end
