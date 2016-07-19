@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
 
    def current_user
      @current_user ||= User.find_by_id(session[:user_id])
-    
+
     end
  end
 
@@ -34,9 +34,9 @@ end
 
  def configure_permitted_parameters
        # Fields for sign up
-       devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :email, :password) }
+       devise_parameter_sanitizer.try(:sign_up) { |u| u.permit(:name, :email, :password) }
        # Fields for editing an existing account
-       devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:name, :email, :password, :current_password) }
+       devise_parameter_sanitizer.try(:account_update) { |u| u.permit(:name, :email, :password, :current_password) }
    end
 
 end

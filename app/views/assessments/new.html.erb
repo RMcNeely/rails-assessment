@@ -1,3 +1,15 @@
 <div class="row small">
   <%= render 'form' %>
 </div>
+<script type="text/javascript">
+$(function(){
+  $('form').submit(function(event){
+    event.preventDefault()
+    var assessment = $(this).serialize();
+    var post = $.post('/assessments', assessment)
+    post.done(function(data){
+      
+    });
+  });
+});
+</script>

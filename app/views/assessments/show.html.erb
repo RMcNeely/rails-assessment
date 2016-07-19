@@ -1,28 +1,27 @@
-<div class="row small-12">
-  <div class="column">
-    <h1><%= @assessment.name %></h1>
-    <h4>A project by <%= link_to @assessment.created_by, "/users/#{@assessment.user.id}" %></h4>
-    <p>
-      Visit the repo at <a href="<%= @assessment.link %>">Github</a><% if can? :modify, @assessment.user  %> | <%= link_to "Edit", "/users/#{@assessment.user.id}/assessment/#{@assessment.slug}/edit" %>
-      <%end%>
-    </p>
-  </div>
+<script type="text/javascript">
+$('button#next').on('click', function(e){
+  e.preventDefault()
+  var assessment = parseInt($(this).attr('data-id')) + 1
+  // debugger
+  var getNext = $.get("/assessment/"+ assessment  + ".json", function(data){
+      $('div.change_assessment_to_render p').text(JSON.stringify(data))
+      debugger
+      $('h1#assessment_name').html(data.name)
+      $('h4#assessment_by').html("A project by <a href='/assessment/" +  data.user.name +"'" + data.user.name )
+  });
+  // getNext.done(function(data0
+  // });
+  getNext.error(function(){
+    alert("Woah there looks like you're at the last one already!")
+  });
+});
+
+</script>
+
+
+<div class="change_assessment_to_render">
+  <%= content_tag :p %>
+  <% json_hash = nil%>
 </div>
 
-<div class="row small-12">
-  <div class="column">
-    <h4>Skills Displayed:</h4>
-    <ul>
-      <% @assessment.skills.each do |as| %>
-        <li><%= as.name %></li>
-      <% end %>
-    </ul>
-  </div>
-</div>
-
-<div class="row small-12">
-  <div class="column">
-    <h4>Screenshots:</h4>
-    <img class="thumbnail" src="http://placehold.it/550x550">
-  </div>
-</div>
+<%= render partial: 'show', local: json_hash || @assessment %>

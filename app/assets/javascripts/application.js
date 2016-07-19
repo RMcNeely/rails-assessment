@@ -12,5 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require vendor/foundation
 //= require turbolinks
 //= require_tree .
+//= require app

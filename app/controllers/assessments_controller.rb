@@ -5,6 +5,10 @@ class AssessmentsController < ApplicationController
     @current_user = current_user
     #binding.pry
     @assessments = Assessment.all
+    respond_to do |format|
+      format.html {render :index}
+      format.json {render json: @assessments, root: true}
+    end
   end
 
   def new
@@ -23,7 +27,16 @@ class AssessmentsController < ApplicationController
   end
 
   def show
-    @assessment = Assessment.find_by_slug(params[:slug])
+    if params[:format] == 'json'
+      @assessment = Assessment.find_by_id(params[:slug])
+    else
+      @assessment = Assessment.find_by_slug(params[:slug])
+    end
+    # binding.pry
+    respond_to do |format|
+      format.html {render :show}
+      format.json {render json: @assessment, root: true}
+    end
   end
 
   def edit
