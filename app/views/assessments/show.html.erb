@@ -5,9 +5,10 @@ $('button#next').on('click', function(e){
   // debugger
   var getNext = $.get("/assessment/"+ assessment  + ".json", function(data){
       $('div.change_assessment_to_render p').text(JSON.stringify(data))
-      debugger
+      // debugger
       $('h1#assessment_name').html(data.name)
-      $('h4#assessment_by').html("A project by <a href='/assessment/" +  data.user.name +"'" + data.user.name )
+      $('h4 a#assessment_by').text(data.user.name)
+      $('button#next').attr('data-id', data.id)
   });
   // getNext.done(function(data0
   // });
@@ -16,6 +17,24 @@ $('button#next').on('click', function(e){
   });
 });
 
+$('button#previous').on('click', function(e){
+  e.preventDefault()
+  var assessment = parseInt($(this).attr('data-id')) - 1
+  // debugger
+  var getNext = $.get("/assessment/"+ assessment  + ".json", function(data){
+      $('div.change_assessment_to_render p').text(JSON.stringify(data))
+      // debugger
+      $('h1#assessment_name').html(data.name)
+      $('h4 a#assessment_by').text(data.user.name)
+      $('h4 a').attr('data-link', data.link)
+      $('button#previous').attr('data-id', data.id)
+  });
+  // getNext.done(function(data0
+  // });
+  getNext.error(function(){
+    alert("Woah there looks like you're at the first one already!")
+  });
+});
 </script>
 
 
