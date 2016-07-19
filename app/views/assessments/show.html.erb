@@ -5,10 +5,17 @@ $('button#next').on('click', function(e){
   // debugger
   var getNext = $.get("/assessment/"+ assessment  + ".json", function(data){
       $('div.change_assessment_to_render p').text(JSON.stringify(data))
-      // debugger
       $('h1#assessment_name').html(data.name)
       $('h4 a#assessment_by').text(data.user.name)
+      $('h4 a#assessment_by').attr("href", '/users/' + data.user.id  )
+      $('p a#repo_link').attr("href", data.link)
       $('button#next').attr('data-id', data.id)
+      $('#assessment_skills_array span').text(JSON.stringify(data.skills))
+      var changeList = $('ul#assessment_skills_array').html(data.skills)
+      // debugger
+      data.skills.forEach(function(skill){
+      $('ul#assessment_skills_array').append('<li>'+ skill.name + '</li>')
+    });
   });
   // getNext.done(function(data0
   // });
@@ -23,24 +30,55 @@ $('button#previous').on('click', function(e){
   // debugger
   var getNext = $.get("/assessment/"+ assessment  + ".json", function(data){
       $('div.change_assessment_to_render p').text(JSON.stringify(data))
-      // debugger
       $('h1#assessment_name').html(data.name)
       $('h4 a#assessment_by').text(data.user.name)
-      $('h4 a').attr('data-link', data.link)
-      $('button#previous').attr('data-id', data.id)
+      $('h4 a#assessment_by').attr("href", '/users/' + data.user.id  )
+      $('p a#repo_link').attr("href", data.link)
+      $('button#next').attr('data-id', data.id)
+      $('#assessment_skills_array span').text(JSON.stringify(data.skills))
+      var changeList = $('ul#assessment_skills_array').html(data.skills)
+      // debugger
+      data.skills.forEach(function(skill){
+      $('ul#assessment_skills_array').append('<li>'+ skill.name + '</li>')
+    });
   });
-  // getNext.done(function(data0
-  // });
   getNext.error(function(){
     alert("Woah there looks like you're at the first one already!")
   });
 });
 </script>
-
-
-<div class="change_assessment_to_render">
-  <%= content_tag :p %>
-  <% json_hash = nil%>
+<div class="row highlight">
+  <button type="button" id="previous" data-id="<%=@assessment.id%>" name="button">Previous Assessment</button>
+  <button type="button" id="next" data-id="<%=@assessment.id%>" name="button">Next Assessment</button>
 </div>
 
-<%= render partial: 'show', local: json_hash || @assessment %>
+<div class="row small-12">
+  <div class="column">
+    <h1 id="assessment_name"><%= @assessment.name %></h1>
+    <h4>A project by <%= link_to @assessment.created_by, "/users/#{@assessment.user.id}", id: 'assessment_by', 'data-link': "assessment_link"%></h4>
+    <p>
+      Visit the repo at <a id="repo_link" href="<%= @assessment.link %>">Github</a><% if can? :modify, @assessment.user  %> | <%= link_to "Edit", "/users/#{@assessment.user.id}/assessment/#{@assessment.slug}/edit" %>
+      <%end%>
+    </p>
+  </div>
+</div>
+
+<div class="row small-12">
+  <div class="column">
+    <h4>Skills Displayed:</h4>
+    <ul id="assessment_skills_array">
+      <span id="skills_array_span">
+        <% @assessment.skills.each do |skills| %>
+      </span>
+        <li><%= skills.name %></li>
+    <% end %>
+  </ul>
+  </div>
+</div>
+
+<div class="row small-12">
+  <div class="column">
+    <h4>Screenshots:</h4>
+    <img class="thumbnail" src="http://placehold.it/550x550">
+  </div>
+</div>
