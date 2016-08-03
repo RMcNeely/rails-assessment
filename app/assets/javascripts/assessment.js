@@ -1,16 +1,18 @@
+
+
+
 $('button.load-assessment').on('click', function(e){
   e.preventDefault()
   var e
-  // 
-  // var newAssessment = function(e) {
-  //   if($(e.target).attr('data-next') === '+1'){
-  //     return 'next'
-  //   } else {
-  //     return 'prev'
-  //   }
-  // }
+
   var getNewAssessment = $.get("/assessment/get-new-assessment.json", {'data-id': $(e.target).attr('data-id'), 'data-next': $(e.target).attr('data-next'), 'data-prev': $(e.target).attr('data-prev'),'format': 'json'}).done( function(data){
+    console.log("check 1")
     var datum = data[0]
+    // debugger
+    // if($('span ul.collaborators li:last-child a')){
+    //   alert("Please finish editing before moving on.")
+    // } else {
+
       $('h1#assessment_name').html(datum.name)
       $('h4 a#assessment_by').text(datum.user.name)
       $('h4 a#assessment_by').attr("href", '/users/' + datum.user.id  )
@@ -18,10 +20,10 @@ $('button.load-assessment').on('click', function(e){
       $('button.load-assessment').attr('data-id', datum.id)
       $('#assessment_skills_array span').text(JSON.stringify(datum.skills))
       var changeList = $('ul#assessment_skills_array').html(datum.skills)
-      // debugger
       datum.skills.forEach(function(skill){
       $('ul#assessment_skills_array').append('<li>'+ skill.name + '</li>')
-    });
+      });
+    // }
   });
   getNewAssessment.error(function(){
     alert("Woops! Something went wrong")
@@ -30,16 +32,37 @@ $('button.load-assessment').on('click', function(e){
 
 $('a.add-collaborators').on('click', function(e) {
   e.preventDefault()
-  var getUsers = $.get('/users.json').done(function(data){
-    $('ul.collaborators').empty()
-    debugger
-    data.forEach(function(user_data){
-      function Student(data){
-        this.name = data.name
-        this.id = data.id
+  allUsers = []
+
+  var collaborators = $.map($('span ul.collaborators li'), function(index, collab ) {
+    function Collaborator(index){
+        this.id = $(index).attr('data-id')
       }
-      var student = new Student(user_data)
-      $('ul.collaborators').append('<li><a class="collaborator" data-id='+ student.id +'>'+ student.name +'</a></li>')
+        return new Collaborator(index)
     })
-})
+
+  var getUsers = $.get('/users.json').done(function(data){
+    // $('ul.collaborators').empty()
+      data.forEach(function(user_data){
+        function Student(data){
+          this.name = data.name
+          this.id = data.id
+        }
+        var student = new Student(user_data)
+        allUsers.push(student)
+        $('ul.collaborators').append("<li><input type='checkbox' data-id="+ student.id +'>'+ student.name +'</li></input>')
+
+      }) //end forEach function
+
+      debugger
+      collaborators.forEach(function(collaborator) {
+        allUsers.forEach(function(individual){
+          if(individual.id === parseInt(collaborator.id)){
+            debugger
+
+          }
+        })
+      })
+  })// end $.get call
+
 })

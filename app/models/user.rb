@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   validates :name, :email, presence: true, uniqueness: true
 
   has_many  :assessments
+  has_many  :assessment_contributers, through: :assessments
   has_many  :assessment_skills, through: :assessments
   has_many  :skills, through: :assessments
 

@@ -34,7 +34,13 @@
     <% if can? :modify, @assessment.user  %> <a href="#" class="add-collaborators">Add Colaborator</a>
     <% end %>
     <span><ul class="collaborators">
-      <li>none</li>
+      <% if @assessment.assessment_contributers.empty? %>
+        <li>none</li>
+      <% else %>
+        <%@assessment.assessment_contributers.each do |contributor| %>
+          <li data-id="<%= contributor.user.id%>"><%= contributor.user.name %></li>
+        <% end%>
+      <% end%>
     </ul></span>
   </div>
 </div>

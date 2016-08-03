@@ -93,3 +93,6 @@ sinatra_users.each do |x|
   end
 
   User.create(name: "Fake Avi", admin: true, password: password, email: "fake_avi@totally-real-flatiron.com")
+
+AssessmentContributer.create(user_id: 17, assessment_id: 1)
+AssessmentContributer.create(user_id: 16, assessment_id: 1)

@@ -1,5 +1,6 @@
 class Assessment < ActiveRecord::Base
   has_many :assessment_skills
+  has_many :assessment_contributers
   has_many :skills, through: :assessment_skills
   belongs_to :user
 
