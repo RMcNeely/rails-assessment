@@ -4,6 +4,10 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    respond_to do |format|
+        format.html {render :index}
+        format.json {render json: @users, root: true}
+    end
   end
 
   def show
@@ -12,6 +16,10 @@ class UsersController < ApplicationController
       return
     end
     @user = User.find_by(id: params[:id])
+    respond_to do |format|
+        format.html {render :show}
+        format.json {render json: @user, root: true}
+      end
   end
 
 

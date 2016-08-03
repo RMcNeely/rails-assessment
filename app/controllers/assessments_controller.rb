@@ -28,14 +28,9 @@ class AssessmentsController < ApplicationController
     redirect_to user_path(@assessment.user.id)
   end
 
-  def next
+  def next_or_prev
     # binding.pry
-    @assessment = Assessment.next(params["data-id"])
-    render  json: @assessment, root: true
-  end
-
-  def prev
-    @assessment = Assessment.prev(params["data-id"])
+    @assessment = Assessment.next_or_prev(params)
     render  json: @assessment, root: true
   end
 

@@ -12,8 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require assessment-js
+//= require assessment
 //= require vendor/foundation
 //= require turbolinks
-//= require_tree .
 //= require app

@@ -49,19 +49,21 @@ class Assessment < ActiveRecord::Base
     end
   end
 
-  def self.next(current_id)
-    Assessment.where('id > ?', current_id).order('id ASC').limit(1)
-  end
+  def self.next_or_prev(params)
+    # binding.pry
+    if params["data-next"]
+      Assessment.where('id > ?', params['data-id']).order('id ASC').limit(1)
+    else
+      Assessment.where('id < ?', params['data-id']).order('id DESC').limit(1)
+    end
 
-  def self.prev(current_id)
-    Assessment.where('id < ?', current_id).order('id DESC').limit(1)
   end
 
   def self.find_by_slug_or_id(params)
     if params[:format] == 'json'
-      @assessment = Assessment.find_by_id(params["data-id"])
+      assessment = Assessment.find_by_id(params["data-id"])
     else
-      @assessment = Assessment.find_by_slug(params[:slug])
+      assessment = Assessment.find_by_slug(params[:slug])
     end
   end
 

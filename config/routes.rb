@@ -8,13 +8,13 @@ Rails.application.routes.draw do
   end
 
   resources :assessments, only: [:index, :create, :show, :delete]
+    get 'assessment/get-new-assessment.json' => 'assessments#next_or_prev'
     get 'assessment/:slug' => 'assessments#show'
     delete 'assessments/:slug' => 'assessments#destroy'
     get 'assessments' => 'assessments#index'
     get 'assessment/:id' => 'assessment#destroy'
     patch 'assessments/:id'=> 'assessments#update'
-    get 'assessment-next.json' => 'assessments#next'
-    get 'assessment-prev.json' => 'assessments#prev'
+
 
   get '/skills' => 'skills#index'
 

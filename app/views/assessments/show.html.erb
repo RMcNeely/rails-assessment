@@ -4,6 +4,7 @@
 </div>
 
 <div class="row small-12">
+
   <div class="column">
     <h1 id="assessment_name"><%= @assessment.name %></h1>
     <h4>A project by <%= link_to @assessment.created_by, "/users/#{@assessment.user.id}", id: 'assessment_by', 'data-link': "assessment_link"%></h4>
@@ -12,10 +13,12 @@
       <%end%>
     </p>
   </div>
+
+
 </div>
 
 <div class="row small-12">
-  <div class="column">
+  <div class="column small-6">
     <h4>Skills Displayed:</h4>
     <ul id="assessment_skills_array">
       <span id="skills_array_span">
@@ -24,6 +27,15 @@
         <li><%= skills.name %></li>
     <% end %>
   </ul>
+  </div>
+
+  <div class="column small-6">
+    <h4>Collaborators:</h4>
+    <% if can? :modify, @assessment.user  %> <a href="#" class="add-collaborators">Add Colaborator</a>
+    <% end %>
+    <span><ul class="collaborators">
+      <li>none</li>
+    </ul></span>
   </div>
 </div>
 
