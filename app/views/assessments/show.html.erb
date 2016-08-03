@@ -1,55 +1,6 @@
-<script type="text/javascript">
-$('button#next').on('click', function(e){
-  e.preventDefault()
-var assessment = parseInt($(this).attr('data-id')) + 1
-  // debugger
-  var getNext = $.get("/assessment/"+ assessment  + ".json", function(data){
-      $('div.change_assessment_to_render p').text(JSON.stringify(data))
-      $('h1#assessment_name').html(data.name)
-      $('h4 a#assessment_by').text(data.user.name)
-      $('h4 a#assessment_by').attr("href", '/users/' + data.user.id  )
-      $('p a#repo_link').attr("href", data.link)
-      $('button.buttons').attr('data-id', data.id)
-      $('#assessment_skills_array span').text(JSON.stringify(data.skills))
-      var changeList = $('ul#assessment_skills_array').html(data.skills)
-      // debugger
-      data.skills.forEach(function(skill){
-      $('ul#assessment_skills_array').append('<li>'+ skill.name + '</li>')
-    });
-  });
-  // getNext.done(function(data0
-  // });
-  getNext.error(function(){
-    alert("Woah there looks like you're at the last one already!")
-  });
-});
-
-$('button#previous').on('click', function(e){
-  e.preventDefault()
-  var assessment = parseInt($(this).attr('data-id')) - 1
-  // debugger
-  var getNext = $.get("/assessment/"+ assessment  + ".json", function(data){
-      $('div.change_assessment_to_render p').text(JSON.stringify(data))
-      $('h1#assessment_name').html(data.name)
-      $('h4 a#assessment_by').text(data.user.name)
-      $('h4 a#assessment_by').attr("href", '/users/' + data.user.id  )
-      $('p a#repo_link').attr("href", data.link)
-      $('button.buttons').attr('data-id', data.id)
-      $('#assessment_skills_array span').text(JSON.stringify(data.skills))
-      var changeList = $('ul#assessment_skills_array').html(data.skills)
-      // debugger
-      data.skills.forEach(function(skill){
-      $('ul#assessment_skills_array').append('<li>'+ skill.name + '</li>')
-    });
-  });
-  getNext.error(function(){
-    alert("Woah there looks like you're at the first one already!")
-  });
-});
-</script>
 <div class="row highlight">
-  <button type="button" id="previous" class="buttons" data-id="<%=@assessment.id%>" name="button">Previous Assessment</button>
-  <button type="button" id="next" class="buttons" data-id="<%=@assessment.id%>" name="button">Next Assessment</button>
+  <button class="load-assessment" data-prev='-1' data-id="<%=@assessment.id%>" >Previous Assessment</button>
+  <button class="load-assessment" data-next='+1' data-id="<%=@assessment.id%>" name="button">Next Assessment</button>
 </div>
 
 <div class="row small-12">

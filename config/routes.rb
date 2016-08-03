@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     get 'assessments' => 'assessments#index'
     get 'assessment/:id' => 'assessment#destroy'
     patch 'assessments/:id'=> 'assessments#update'
+    get 'assessment-next.json' => 'assessments#next'
+    get 'assessment-prev.json' => 'assessments#prev'
 
   get '/skills' => 'skills#index'
 

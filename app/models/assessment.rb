@@ -37,17 +37,31 @@ class Assessment < ActiveRecord::Base
   end
 
   def add_new_skills(params)
-#    binding.pry
     new_skill = params[:before_add_for_skills]
       Skill.create(assessment_id: self.id, user_id: self.id, name: new_skill)
   end
 
   def associate_skills_to_assessment(params)
-#    binding.pry
     if params[:skill_ids]
       params[:skill_ids].each do |x|
         Skill.create(assessment_id: self.id, user_id: self.id, name: Skill.find_by_id(x).name)
       end
+    end
+  end
+
+  def self.next(current_id)
+    Assessment.where('id > ?', current_id).order('id ASC').limit(1)
+  end
+
+  def self.prev(current_id)
+    Assessment.where('id < ?', current_id).order('id DESC').limit(1)
+  end
+
+  def self.find_by_slug_or_id(params)
+    if params[:format] == 'json'
+      @assessment = Assessment.find_by_id(params["data-id"])
+    else
+      @assessment = Assessment.find_by_slug(params[:slug])
     end
   end
 

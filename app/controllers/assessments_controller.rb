@@ -1,5 +1,7 @@
 class AssessmentsController < ApplicationController
   load_and_authorize_resource
+  skip_load_and_authorize_resource   :only => [:next, :prev]
+
 
   def index
     @current_user = current_user
@@ -26,17 +28,23 @@ class AssessmentsController < ApplicationController
     redirect_to user_path(@assessment.user.id)
   end
 
-  def show
-    if params[:format] == 'json'
-      @assessment = Assessment.find_by_id(params[:slug])
-    else
-      @assessment = Assessment.find_by_slug(params[:slug])
-    end
+  def next
     # binding.pry
+    @assessment = Assessment.next(params["data-id"])
+    render  json: @assessment, root: true
+  end
+
+  def prev
+    @assessment = Assessment.prev(params["data-id"])
+    render  json: @assessment, root: true
+  end
+
+  def show
+    @assessment = Assessment.find_by_slug_or_id(params)
     respond_to do |format|
-      format.html {render :show}
-      format.json {render json: @assessment, root: true}
-    end
+        format.html {render :show}
+        format.json {render json: @assessment, root: true}
+      end
   end
 
   def edit
@@ -47,7 +55,6 @@ class AssessmentsController < ApplicationController
   end
 
   def update
-    binding.pry
     @assessment.update(assessment_params)
     redirect_to user_path(assessment_params[:user_id])
   end
