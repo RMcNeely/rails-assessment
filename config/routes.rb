@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     get 'assessments' => 'assessments#index'
     get 'assessment/:id' => 'assessment#destroy'
     patch 'assessments/:id'=> 'assessments#update'
+    post 'assessment/:slug/update' => 'assessments#jquery'
 
 
   get '/skills' => 'skills#index'

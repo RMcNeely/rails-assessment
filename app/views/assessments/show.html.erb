@@ -30,8 +30,9 @@
   </div>
 
   <div class="column small-6">
-    <h4>Collaborators:</h4>
-    <% if can? :modify, @assessment.user  %> <a href="#" class="add-collaborators">Add Colaborator</a>
+    <h4 class='collaborators'>Collaborators:</h4>
+    <% if can? :modify, @assessment.user  %> <a href="#" class="add-collaborators" id="on">Add Colaborator</a>
+    <input type='button' value='Save Collaborators' class='save-collaborators hide' />
     <% end %>
     <span><ul class="collaborators">
       <% if @assessment.assessment_contributers.empty? %>

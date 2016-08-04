@@ -1,6 +1,3 @@
-
-
-
 $('button.load-assessment').on('click', function(e){
   e.preventDefault()
   var e
@@ -30,7 +27,7 @@ $('button.load-assessment').on('click', function(e){
   });
 });
 
-$('a.add-collaborators').on('click', function(e) {
+$('a.add-collaborators#on').on('click', function(e) {
   e.preventDefault()
   allUsers = []
 
@@ -50,19 +47,34 @@ $('a.add-collaborators').on('click', function(e) {
         }
         var student = new Student(user_data)
         allUsers.push(student)
-        $('ul.collaborators').append("<li><input type='checkbox' data-id="+ student.id +'>'+ student.name +'</li></input>')
+        $('ul.collaborators').append("<li><input type='checkbox'  data-id="+ student.id +'>'+ student.name +'</li></input>')
 
       }) //end forEach function
 
-      debugger
+      // debugger
       collaborators.forEach(function(collaborator) {
         allUsers.forEach(function(individual){
           if(individual.id === parseInt(collaborator.id)){
-            debugger
-
+            $('span ul.collaborators li input[data-id=' + individual.id + ']')[0].checked = true
+            $('span ul.collaborators li[data-id=' + individual.id + ']')[0].remove()
           }
         })
       })
   })// end $.get call
+  $('a.add-collaborators').remove()
+  $(".save-collaborators").removeClass('hide')
+}) // end Add Collaborators click event
 
+$("input[type='button'].save-collaborators").on('click', function(e){
+  assessment_collaborators = $('input:checked').map(function(i){
+    return $(this).attr('data-id')
+  })
+  path = window.location.pathname + '/update'
+  debugger
+  $.post(path, {'assessment_collaborators': assessment_collaborators}).done(function() {
+
+    console.log("Completed successfully")
+  }).error(function(){
+    alert("Something's wrong")
+  })
 })

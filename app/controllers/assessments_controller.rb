@@ -59,6 +59,10 @@ class AssessmentsController < ApplicationController
     redirect_to assessments_path
   end
 
+  def jquery
+    binding.pry
+
+  end
   def assessment_params
     params.require(:assessment).permit(:name, :link, :user_id, :completed, :skill_ids =>[], skills_attributes:[:name])
   end

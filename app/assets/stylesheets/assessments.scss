@@ -9,11 +9,14 @@ div.highlight {
 //   visibility: hidden;
 // }
 
-button#previous{
+button[data-prev]{
   float: left;
   margin: 0.5em 0 0 2em;
 }
-button#next {
+button[data-next] {
   float: right;
   margin: 0.5em 2em;
+}
+.hide {
+  visibility: hidden;
 }
