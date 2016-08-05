@@ -96,3 +96,7 @@ sinatra_users.each do |x|
 
 AssessmentContributer.create(user_id: 17, assessment_id: 1)
 AssessmentContributer.create(user_id: 16, assessment_id: 1)
+AssessmentContributer.create(user_id: 1, assessment_id: 2)
+
+Comment.create(assessment_id: 2, text: "I think I found a bug, check the repo's issues", user_id: 1)
+Comment.create(assessment_id: 1, text: "Hey this looks cool!")

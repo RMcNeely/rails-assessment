@@ -20,3 +20,18 @@ button[data-next] {
 .hide {
   visibility: hidden;
 }
+div.comment_txt {
+  // width: 100%;
+  background-color: #ccc;
+  // margin: 3em, 2em, 0.5em;
+  border-radius: 2em;
+  padding: 1.25em;
+}
+span.comment_by {
+  border-radius: 2em;
+  float: right;
+  padding: 1.25em;
+  background-color: #00bce1;
+  margin-top: -1em;
+
+}

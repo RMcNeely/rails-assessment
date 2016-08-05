@@ -1,6 +1,7 @@
 class AssessmentSerializer < ActiveModel::Serializer
-  attributes :id, :name, :link#, :comment
-  has_one :user
-  has_many :skills
-  has_many :assessment_contributers
+  attributes :id, :name, :link
+  has_one   :user
+  has_many  :skills
+  has_many  :comments
+  has_many  :assessment_contributers
 end

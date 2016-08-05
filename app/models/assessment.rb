@@ -1,7 +1,8 @@
 class Assessment < ActiveRecord::Base
-  has_many :assessment_skills
-  has_many :assessment_contributers
-  has_many :skills, through: :assessment_skills
+  has_many  :comments
+  has_many  :assessment_skills
+  has_many  :assessment_contributers
+  has_many  :skills, through: :assessment_skills
   belongs_to :user
 
   accepts_nested_attributes_for :skills, reject_if: :all_blank

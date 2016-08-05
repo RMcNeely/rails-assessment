@@ -54,3 +54,30 @@
     <img class="thumbnail" src="http://placehold.it/550x550">
   </div>
 </div>
+<div class="row small-12">  <!-- Start Comments Div-->
+    <h4 class="comments_header">Comments:</h4>
+    <% if @assessment.comments.length > 0 %>
+    <%@assessment.comments.each do |comment| %> <!-- Start  Comments loop -->
+      <div class="container">
+        <div class="comment_txt">
+          <span id="comment_txt"><%= comment.text %></span>
+          <br>
+        <span class="comment_by">
+          By: <%= comment.by %>
+        </span>
+        </div>
+        <br>
+      </div>
+      <br>
+      <br>
+    <% end%> <!-- END  Comments loop -->
+    <% else %>
+    <p class="empty_comments">
+      Be the first to comment!
+    </p>
+<% end %>
+</div> <!-- End Comments Div-->
+<div class="add_new_comments row small-12">
+  <textarea id="new_comment_input" name="name" value="" placeholder="Tell this person how cool their project is!"></textarea>
+  <input type="button" name="new_comment" value="Add New Comment">
+</div>
