@@ -59,12 +59,15 @@ class AssessmentsController < ApplicationController
     redirect_to assessments_path
   end
 
-  def jquery
-    binding.pry
-
+  def contributors
+    @assessment = Assessment.find_by_slug(params[:slug])
+    # binding.pry
+    AssessmentContributer.create_new(params[:assessment_contributers], @assessment)
+    render :show
   end
+
   def assessment_params
-    params.require(:assessment).permit(:name, :link, :user_id, :completed, :skill_ids =>[], skills_attributes:[:name])
+    params.require(:assessment).permit(:name, :link, :user_id, :completed, :skill_ids =>[], skills_attributes:[:name], :assessment_contributers => [])
   end
 
   def current_ability

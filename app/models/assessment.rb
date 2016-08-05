@@ -61,11 +61,7 @@ class Assessment < ActiveRecord::Base
   end
 
   def self.find_by_slug_or_id(params)
-    if params[:format] == 'json'
-      assessment = Assessment.find_by_id(params["data-id"])
-    else
-      assessment = Assessment.find_by_slug(params[:slug])
-    end
+    assessment = Assessment.find_by_id(params["data-id"]) || assessment = Assessment.find_by_slug(params[:slug])
   end
 
 end

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :comments
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
   get "sign_out", :to => "sessions#destroy"
   resources :users do
@@ -14,7 +15,7 @@ Rails.application.routes.draw do
     get 'assessments' => 'assessments#index'
     get 'assessment/:id' => 'assessment#destroy'
     patch 'assessments/:id'=> 'assessments#update'
-    post 'assessment/:slug/update' => 'assessments#jquery'
+    post 'assessment/:slug/update' => 'assessments#contributors'
 
 
   get '/skills' => 'skills#index'
@@ -56,8 +57,7 @@ Rails.application.routes.draw do
 
   # Example resource route with more complex sub-resources:
   #   resources :products do
-  #     resources :comments
-  #     resources :sales do
+  #     #     resources :sales do
   #       get 'recent', on: :collection
   #     end
   #   end

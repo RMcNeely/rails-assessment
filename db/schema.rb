@@ -14,10 +14,11 @@
 ActiveRecord::Schema.define(version: 20160803144646) do
 
   create_table "assessment_contributers", force: :cascade do |t|
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.integer  "assessment_id"
     t.integer  "user_id"
+    t.text     "contributer_name"
   end
 
   create_table "assessment_skills", force: :cascade do |t|
