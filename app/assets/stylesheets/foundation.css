@@ -4302,7 +4302,7 @@ a .box p {
 a:hover, a:focus {
       color: #white; }
 a div.box img {
-      border-radius: .75em; }
+      border-radius: .75em;
 }
 
 img#header-image {
